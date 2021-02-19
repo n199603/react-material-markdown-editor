@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
+import firebase from "firebase";
 
 class App extends Component {
   constructor(props) {
@@ -8,8 +9,25 @@ class App extends Component {
     this.state = {
       selectedNoteIndex: null,
       selectedNote: null,
-      notes: null
+      notes: null,
     };
+  }
+
+  componentDidMount() {
+    firebase
+      .firestore()
+      .collection("notes")
+      .onSnapshot((serverUpdate) => {
+        const notes = serverUpdate.docs.map((_doc) => {
+          const data = _doc.data();
+          data["id"] = _doc.id;
+          return data;
+        });
+
+        this.setState({
+          notes,
+        });
+      });
   }
 }
 

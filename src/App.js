@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { Component } from "react";
 import firebase from "firebase";
+import Sidebar from "./Sidebar/sidebar";
+import Editor from "./Editor/editor";
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +30,15 @@ class App extends Component {
           notes,
         });
       });
+  }
+
+  render() {
+    return (
+      <div className="app-container">
+        <Sidebar></Sidebar>
+        <Editor></Editor>
+      </div>
+    );
   }
 }
 

@@ -16,12 +16,27 @@ class Editor extends Component {
     };
   }
 
+  updateBody = async (val) => {
+    await this.setState({
+      text: val,
+    });
+
+    this.update();
+  };
+
+  update = _.debounce(() => {
+    console.log("updated!!");
+  }, 1500);
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.editorContainer}>
-        <ReactQuill></ReactQuill>
+        <ReactQuill
+          value={this.state.text}
+          onChange={this.updateBody}
+        ></ReactQuill>
       </div>
     );
   }

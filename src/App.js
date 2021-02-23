@@ -33,9 +33,10 @@ class App extends Component {
   }
 
   render() {
+    const { selectedNoteIndex, notes } = this.state;
     return (
       <div className="app-container">
-        <Sidebar></Sidebar>
+        <Sidebar selectedNoteIndex={selectedNoteIndex} notes={notes}></Sidebar>
         <Editor></Editor>
       </div>
     );

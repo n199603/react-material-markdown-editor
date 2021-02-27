@@ -21,8 +21,20 @@ class Sidebar extends Component {
 
   render() {
     const { classes, notes, selectedNoteIndex } = this.props;
+    const { addingNote } = this.state;
+
     return (
       <div className={classes.sidebarContainer}>
+        {addingNote ? (
+          <div>
+            <input
+              type="text"
+              className={classes.newNoteInput}
+              placeholder="note title"
+              onKeyUp={(e) => this.updateTitle(e.target.value)}
+            />
+          </div>
+        ) : null}
         <Button onClick={this.newNoteBtnClick} className={classes.newNoteBtn}>
           New Note
         </Button>
